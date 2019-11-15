@@ -25,7 +25,7 @@ As part of the project I needed to calculate and implement the "Backpropagation"
 For doing so, I created the gradient check which compare between
 the calculated gradient approximation of:
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;\nabla{f(x)}\approx\frac{f(x+\epsilon)-f(x-\epsilon)}{2\epsilon}" title="\Large \nabla{f(x)}\approx\frac{f(x+\epsilon)-f(x-\epsilon)}{2\epsilon}" />
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;f'(x)\approx\frac{f(x+\epsilon)-f(x-\epsilon)}{2\epsilon}" title="\Large f'(x)\approx\frac{f(x+\epsilon)-f(x-\epsilon)}{2\epsilon}" />
 
 ## Dependencies:
 * Windows / Linux
