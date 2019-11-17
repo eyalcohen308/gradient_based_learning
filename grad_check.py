@@ -25,8 +25,8 @@ def gradient_check(f, x):
 		theta_plus[ix] += h
 		theta_minus[ix] -= h
 
-		f_theta_plus, _ = f(x_plus)
-		f_theta_minus, _ = f(x_minus)
+		f_theta_plus, _ = f(theta_plus)
+		f_theta_minus, _ = f(theta_minus)
 		numeric_gradient = (f_theta_plus - f_theta_minus) / (2 * h)
 
 		# Compare gradients
