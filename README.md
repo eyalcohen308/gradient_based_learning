@@ -1,4 +1,4 @@
-# gradient_based_learning
+# Gradient Based Learning
 As part of Deep Learning for Text and Sequences course I implemented a log-linear classifier and a multi-layer
 perceptron classifier.I also write the training code for them.
 All the classifiers uses the hard cross-entropy loss.
