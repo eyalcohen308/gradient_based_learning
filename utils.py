@@ -1,6 +1,7 @@
 # This file provides code which you may or may not find helpful.
 # Use it if you want, or ignore it.
 import random
+import numpy as np
 
 
 def read_data(fname):
@@ -18,6 +19,7 @@ def text_to_bigrams(text):
 
 TRAIN = [(l, text_to_bigrams(t)) for l, t in read_data("train")]
 DEV = [(l, text_to_bigrams(t)) for l, t in read_data("dev")]
+TEST = [(l, text_to_bigrams(t)) for l, t in read_data("test")]
 
 from collections import Counter
 
@@ -30,5 +32,13 @@ vocab = set([x for x, c in fc.most_common(600)])
 
 # label strings to IDs
 L2I = {l: i for i, l in enumerate(list(sorted(set([l for l, t in TRAIN]))))}
+#  IDs to label strings
+I2L = {i: l for i, l in enumerate(list(sorted(set([l for l, t in TRAIN]))))}
 # feature strings (bigrams) to IDs
 F2I = {f: i for i, f in enumerate(list(sorted(vocab)))}
+
+
+def one_hot_vector(y, y_pred):
+	y_vec = np.zeros(len(y_pred))
+	y_vec[y] = 1
+	return y_vec

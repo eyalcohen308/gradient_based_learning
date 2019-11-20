@@ -1,7 +1,7 @@
-import loglinear as ll
 import random
 import utils as ut
 import numpy as np
+import mlp1 as mpl1
 
 STUDENT = {'name': 'Eyal Cohen',
            'ID': '308347244'}
@@ -11,8 +11,8 @@ def test_predict(test_dataset, params):
 	with open('test.pred', 'w') as file:
 		for label, features in test_dataset:
 			x = feats_to_vec(features)
-			y_hat = ll.predict(x, params)
-			file.write(ut.I2L[y_hat]+'\n')
+			y_hat = mpl1.predict(x, params)
+			file.write(ut.I2L[y_hat] + '\n')
 
 
 def feats_to_vec(features):
@@ -30,7 +30,7 @@ def accuracy_on_dataset(dataset, params):
 	local_l2i = ut.L2I
 	for label, features in dataset:
 		feat_vec = feats_to_vec(features)
-		y_hat = ll.predict(feat_vec, params)
+		y_hat = mpl1.predict(feat_vec, params)
 
 		if local_l2i[label] == y_hat:
 			good += 1
@@ -60,7 +60,7 @@ def train_classifier(train_data, dev_data, num_iterations, learning_rate, params
 		for label, features in train_data:
 			x = feats_to_vec(features)  # convert features to a vector.
 			y = ut.L2I[label]  # convert the label to number if needed.
-			loss, grads = ll.loss_and_gradients(x, y, params)
+			loss, grads = mpl1.loss_and_gradients(x, y, params)
 			cum_loss += loss
 
 			# update the parameters according to the gradients
@@ -82,10 +82,11 @@ if __name__ == '__main__':
 	train_data = ut.TRAIN
 	dev_data = ut.DEV
 	test_data = ut.TEST
-	num_iterations = 15
-	learning_rate = 0.01
+	num_iterations = 100
+	learning_rate = 0.001
 
 	in_dim, out_dim = len(ut.F2I), len(ut.L2I)
-	params = ll.create_classifier(in_dim, out_dim)
+	hid_dim = 100
+	params = mpl1.create_classifier(in_dim, hid_dim, out_dim)
 	trained_params = train_classifier(train_data, dev_data, num_iterations, learning_rate, params)
 	test_predict(test_data, trained_params)

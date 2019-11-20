@@ -1,7 +1,8 @@
 import numpy as np
+import utils as ut
 
 STUDENT = {'name': 'YOUR NAME',
-		   'ID': 'YOUR ID NUMBER'}
+           'ID': 'YOUR ID NUMBER'}
 
 
 def softmax(x):
@@ -56,8 +57,8 @@ def loss_and_gradients(x, y, params):
 	y_pred = classifier_output(x, params)
 
 	# y representation , example: y = 3, size = 5: [0,0,0,1,0]
-	y_vec = np.zeros(len(y_pred))
-	y_vec[y] = 1
+	y_vec = ut.one_hot_vector(y, y_pred)
+
 	# derivative of b: y_pred - y
 	gb = y_pred - y_vec
 	gW = np.zeros((rows_size, col_size))
@@ -66,7 +67,6 @@ def loss_and_gradients(x, y, params):
 	# for i in range(rows_size):
 	# 	for j in range(col_size):
 	# 		gW[i, j] = -x[i] * ((y == j) - y_pred[j])
-
 
 	# problem with small numbers:
 	for i in range(rows_size):
