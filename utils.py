@@ -42,3 +42,8 @@ def one_hot_vector(y, y_pred):
 	y_vec = np.zeros(len(y_pred))
 	y_vec[y] = 1
 	return y_vec
+
+
+def derivative_tanh(x):
+	# return the derivative of tanh
+	return 1 - (np.tanh(x) ** 2)

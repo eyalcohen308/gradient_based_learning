@@ -1,6 +1,6 @@
 import numpy as np
 from loglinear import softmax
-import utils as ut
+from utils import *
 
 STUDENT = {'name': 'YOUR NAME',
            'ID': 'YOUR ID NUMBER'}
@@ -12,11 +12,6 @@ def classifier_output(x, params):
 	h_layer_tanh = np.tanh(np.dot(x, W) + b)
 	probs = softmax(np.dot(h_layer_tanh, U) + b_tag)
 	return probs
-
-
-def derivative_tanh(x):
-	# return the derivative of tanh
-	return 1 - (np.tanh(x) ** 2)
 
 
 def predict(x, params):
@@ -44,7 +39,7 @@ def loss_and_gradients(x, y, params):
 	loss = 0
 	# loss function:
 	y_pred = classifier_output(x, params)
-	y_vec = ut.one_hot_vector(y, y_pred)
+	y_vec = one_hot_vector(y, y_pred)
 
 	# Derivatives:
 	gb_tag = y_pred - y_vec
