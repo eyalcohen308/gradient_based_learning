@@ -83,7 +83,7 @@ if __name__ == '__main__':
 	train_data = ut.TRAIN
 	dev_data = ut.DEV
 	test_data = ut.TEST
-	num_iterations = 30
+	num_iterations = 20
 	learning_rate = 0.001
 
 	in_dim, out_dim = len(ut.F2I), len(ut.L2I)

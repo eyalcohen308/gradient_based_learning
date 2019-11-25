@@ -99,7 +99,8 @@ def create_classifier(dims):
 	params = []
 	for in_dim, out_dim in zip(dims, dims[1:]):
 		W = np.random.randn(in_dim, out_dim) * np.sqrt(2 / (out_dim + in_dim))
-		b = np.random.randn(out_dim) * np.sqrt(1 / (out_dim))
+		# b = np.random.randn(out_dim) * np.sqrt(1 / (out_dim))
+		b = np.zeros(out_dim)
 		b.reshape(b.shape[0], 1)
 		params.append(W)
 		params.append(b)
